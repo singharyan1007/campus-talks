@@ -4,6 +4,7 @@ import { ChannelSearch, TeamChannel, TeamChannelPreview } from './';
 import Cookies from 'universal-cookie';
 import HospitalIcon from '../assets/hospital.png'
 import LogoutIcon from '../assets/logout.png'
+import TeamChannelList from './TeamChannelList';
 
 const Sidebar = () => {
     return (
@@ -36,7 +37,34 @@ function ChannelListContainer() {
       <>
           <Sidebar />
           <div className="channel-list__list__wrapper">
-              <CompanyHeader/>
+              <CompanyHeader />
+              <ChannelSearch />
+              <ChannelList
+                  filters={ {}}
+                  channelRenderFilterFn={() => {
+                      
+                  } }
+                  List={(listProps) => (
+                      <TeamChannelList {...listProps}
+                      type='team'/>
+                  )}
+                  Preview={(previewProps) => {
+                      <TeamChannelPreview {...previewProps} type='team'/>
+                  }}
+              />
+               <ChannelList
+                  filters={ {}}
+                  channelRenderFilterFn={() => {
+                      
+                  } }
+                  List={(listProps) => (
+                      <TeamChannelList {...listProps}
+                      type='messaging'/>
+                  )}
+                  Preview={(previewProps) => {
+                      <TeamChannelPreview {...previewProps} type='messaging'/>
+                  }}
+              />
           </div>
       
       </>
